@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promocodes', function (Blueprint $table) {
+        Schema::create('genders', function (Blueprint $table) {
             $table->id();
-            $table->string('value');
-            $table->date('date_of_end');
-            $table->decimal('summ');
-            $table->decimal('summ_from');
+            $table ->string('title');
             $table->timestamps();
-
-
-            $table->foreignId('user_id')->index()->constrained('users');
-
         });
     }
 
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('promocodes');
+        Schema::dropIfExists('genders');
     }
 };

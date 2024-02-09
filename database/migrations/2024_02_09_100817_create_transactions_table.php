@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('user');
+            $table->string('transfer_date');
             $table->decimal('value');
-            $table->unsignedSmallInteger('status')->default(1);
             $table->timestamps();
+
+            $table->foreignId('status_of_transaction_id')->index()->constrained('status_of_transactions')->default(1);
         });
     }
 

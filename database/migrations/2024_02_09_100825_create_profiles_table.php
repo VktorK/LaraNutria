@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('Last_name');
             $table->string('First_name');
-            $table->string('Middle_name');
-            $table->unsignedSmallInteger('gender');
+            $table->string('Middle_name')->nullable();
             $table->date('date_of_but');
             $table->string('residential_address');
             $table->string('login');
-            $table->decimal('balance');
+            $table->decimal('balance')->nullable();
             $table->timestamps();
+
+            $table->foreignId('gender_id')->index()->constrained('genders');
+
         });
     }
 

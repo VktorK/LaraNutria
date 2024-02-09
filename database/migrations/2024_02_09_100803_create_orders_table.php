@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->date('date_of_order');
             $table->decimal('total_sum');
-            $table->string('service_name');
-            $table->string('user');
             $table->timestamps();
+
+
+            $table->foreignId('service_id')->index()->nullable()->constrained('services');
+            $table->foreignId('user_id')->index()->constrained('users');
+
         });
     }
 
