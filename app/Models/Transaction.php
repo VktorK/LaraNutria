@@ -10,4 +10,14 @@ class Transaction extends Model
     use HasFactory;
 
     protected $guarded = false;
+
+    public function statusOfTransaction()
+    {
+        return $this->belongsTo(StatusofTransaction::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

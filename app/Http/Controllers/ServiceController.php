@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Service\StoreServiceRequest;
 use App\Http\Requests\Service\UpdateServiceRequest;
+use App\Http\Resources\ServiceResource;
 use App\Models\Order;
 use App\Models\Promocode;
 use App\Models\Service;
@@ -17,8 +18,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $data = Service::all();
-        return $data->fresh();
+        return ServiceResource::collection(Service::all())->resolve();
+
     }
 
     /**
@@ -27,7 +28,8 @@ class ServiceController extends Controller
     public function store(StoreServiceRequest $request)
     {
         $data = $request->validated();
-        return Service::create($data);
+        $service = Service::create($data);
+        return ServiceResource::make($service);
     }
 
     /**
@@ -35,7 +37,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-       return $service;
+        return ServiceResource::make($service);
     }
 
     /**
@@ -45,7 +47,8 @@ class ServiceController extends Controller
     {
         $data = $request->validated();
         $service->update($data);
-        return $service->fresh();
+        $service = $service->fresh();
+        return ServiceResource::make($service);
     }
 
     /**

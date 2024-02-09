@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promocodes', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('value');
-            $table->date('date_of_end');
-            $table->decimal('summ');
-            $table->decimal('summ_from');
+            $table->date('date_of_order');
+            $table->decimal('total_sum');
             $table->timestamps();
 
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('promocodes');
+        Schema::dropIfExists('orders');
     }
 };

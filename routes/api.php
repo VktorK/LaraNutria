@@ -26,3 +26,6 @@ Route::apiResource('promocodes', \App\Http\Controllers\PromocodeController::clas
 Route::apiResource('services', \App\Http\Controllers\ServiceController::class);
 Route::apiResource('transactions', \App\Http\Controllers\TransactionController::class);
 Route::apiResource('users', \App\Http\Controllers\UserController::class);
+Route::apiResource('genders', \App\Http\Controllers\GenderController::class);
+Route::apiResource('categories', \App\Http\Controllers\CategoryController::class);
+Route::apiResource('softs', \App\Http\Controllers\StatusOfTransactionController::class);

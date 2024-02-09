@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
-            $table->string('category');
-            $table->decimal('price');
+            $table->string('content')->nullable();
+            $table->decimal('price')->nullable();
             $table->timestamps();
+
+
+            $table->foreignId('category_id')->index()->constrained('categories');
+            $table->foreignId('order_id')->index()->constrained('orders');
+
         });
     }
 

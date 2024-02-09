@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Profile\StoreProfileRequest;
 use App\Http\Requests\Profile\UpdateProfileRequest;
+use App\Http\Resources\ProfileResource;
 use App\Models\Order;
 use App\Models\Profile;
 use Illuminate\Http\Response;
@@ -16,7 +17,7 @@ class ProfileController extends Controller
     public function index()
     {
         $data = Profile::all();
-        return $data->fresh();
+        return ProfileResource::collection($data)->resolve();
 
     }
 
@@ -26,7 +27,9 @@ class ProfileController extends Controller
     public function store(StoreProfileRequest $request)
     {
         $data = $request->validated();
-        return Profile::create($data);
+        $profile = Profile::create($data);
+        $profile = $profile->fresh();
+        return ProfileResource::make($profile);
 
     }
 
@@ -35,7 +38,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        return $profile;
+        return ProfileResource::make($profile);
     }
 
     /**
@@ -45,7 +48,8 @@ class ProfileController extends Controller
     {
         $data = $request->validated();
         $profile->update($data);
-        return $profile->fresh();
+        $profile = $profile->fresh();
+        return ProfileResource::make($profile);
     }
 
     /**

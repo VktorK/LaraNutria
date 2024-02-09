@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Transaction\StoreTransactionRequest;
 use App\Http\Requests\Transaction\UpdateTransactionRequest;
+use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use Illuminate\Http\Response;
 
@@ -15,8 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $data = Transaction::all();
-        return $data->fresh();
+        return TransactionResource::collection(Transaction::all())->resolve();
+
     }
 
     /**
@@ -25,7 +26,8 @@ class TransactionController extends Controller
     public function store(StoreTransactionRequest $request)
     {
         $data = $request->validated();
-        return Transaction::create($data);
+        $transaction = Transaction::create($data);
+        return TransactionResource::make($transaction);
     }
 
     /**
@@ -33,7 +35,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        return $transaction;
+        return TransactionResource::make($transaction);
     }
 
     /**
@@ -43,7 +45,8 @@ class TransactionController extends Controller
     {
         $data = $request->validated();
         $transaction->update($data);
-        return $transaction->fresh();
+        $transaction=$transaction->fresh();
+        return TransactionResource::make($transaction);
     }
 
     /**
