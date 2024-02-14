@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Promocode extends Model
 {
@@ -11,7 +12,7 @@ class Promocode extends Model
 
     protected $guarded = false;
 
-    public function user()
+    public function user(): belongsTo
     {
         return $this->belongsTo(User::class);
     }

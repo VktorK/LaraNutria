@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Service extends Model
 {
@@ -11,14 +13,19 @@ class Service extends Model
 
     protected $guarded = false;
 
-    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function users(): belongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 
 
