@@ -22,8 +22,8 @@ return new class extends Migration
             $table->decimal('balance')->nullable();
             $table->timestamps();
 
-            $table->foreignId('gender_id')->index()->constrained('genders');
-            $table->foreignId('user_id')->index()->constrained('users');
+            $table->unsignedBigInteger('profileable_id');
+            $table->string('profileable_type');
 
         });
     }

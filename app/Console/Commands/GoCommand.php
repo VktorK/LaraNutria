@@ -3,11 +3,14 @@
 namespace App\Console\Commands;
 
 use App\Models\Category;
+use App\Models\Like;
 use App\Models\Order;
 use App\Models\Profile;
 
 use App\Models\Promocode;
 
+use App\Models\Provider;
+use App\Models\Review;
 use App\Models\Service;
 use App\Models\ServiceUser;
 use App\Models\User;
@@ -35,9 +38,9 @@ class GoCommand extends Command
     public function handle()
     {
 
-        $promocodes = Promocode::find(10);
+        $likes = Like::first();
 
-        dd($promocodes->user->toArray());
+        dd($likes->users->toArray());
 
     }
 }

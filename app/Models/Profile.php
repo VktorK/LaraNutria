@@ -6,6 +6,7 @@ use App\Http\Controllers\GenderController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Profile extends Model
 {
@@ -21,5 +22,10 @@ class Profile extends Model
     public function gender(): belongsTo
     {
         return $this->belongsTo(Gender::class);
+    }
+
+    public function profileable(): MorphTo
+    {
+        return $this->morphTo();
     }
 }
