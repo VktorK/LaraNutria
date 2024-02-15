@@ -5,10 +5,9 @@ namespace App\Console\Commands;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Profile;
-<<<<<<< HEAD
+
 use App\Models\Promocode;
-=======
->>>>>>> origin/main
+
 use App\Models\Service;
 use App\Models\ServiceUser;
 use App\Models\User;
@@ -35,12 +34,10 @@ class GoCommand extends Command
      */
     public function handle()
     {
-<<<<<<< HEAD
+
         $promocodes = Promocode::find(10);
+
         dd($promocodes->user->toArray());
-=======
-        $post = User::first();
-        dd($post->orders->toArray());
->>>>>>> origin/main
+
     }
 }
